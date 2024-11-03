@@ -22,7 +22,7 @@ public class WindowMain {
   public static JMenuItem itemEliminar = new JMenuItem("Eliminar");
   public static JMenuItem itemModificar = new JMenuItem("Modificar");
   public static JMenuItem itemAgregar = new JMenuItem("Agregar");
-
+  
   public static JMenuItem itemEliminar2 = new JMenuItem("Eliminar");
   public static JMenuItem itemConsultar2 = new JMenuItem("Consultar");
   public static JMenuItem itemModificar2 = new JMenuItem("Modificar");
@@ -33,9 +33,11 @@ public class WindowMain {
   public static JMenuItem itemModificar3 = new JMenuItem("Modificar");
   public static JMenuItem itemConsultar3 = new JMenuItem("Consultar");
   public static JMenuItem itemRecordatorios3 = new JMenuItem("Recordatorios");
-
+  
   public static JMenuItem impresiones = new JMenuItem("Impresiones");
   public static JMenuItem Salir = new JMenuItem("Salir");
+
+
 
   public WindowMain() {
     atributos();
@@ -49,57 +51,21 @@ public class WindowMain {
     jf_ventanaPrincipal.setSize(800, 600);
     jf_ventanaPrincipal.setLocationRelativeTo(null);
 
-    // barra de menu
     menuBar.setBackground(new Color(0, 150, 199));
-    // menus
     menuCitas.setForeground(Color.white);
     menuOtros.setForeground(Color.white);
     menuPacientes.setForeground(Color.white);
     menuUsuarios.setForeground(Color.white);
 
-    // items
+    itemEliminar.setForeground(Color.WHITE);
     itemEliminar.setBackground(new Color(0, 150, 199));
     itemConsultar.setBackground(new Color(0, 150, 199));
     itemModificar.setBackground(new Color(0, 150, 199));
     itemAgregar.setBackground(new Color(0, 150, 199));
-    
-    itemEliminar2.setBackground(new Color(0, 150, 199));
-    itemConsultar2.setBackground(new Color(0, 150, 199));
-    itemModificar2.setBackground(new Color(0, 150, 199));
-    itemAgregar2.setBackground(new Color(0, 150, 199));
-    
-    itemAgendar3.setBackground(new Color(0, 150, 199));
-    itemCancelar3.setBackground(new Color(0, 150, 199));
-    itemModificar3.setBackground(new Color(0, 150, 199));
-    itemConsultar3.setBackground(new Color(0, 150, 199));
-    itemRecordatorios3.setBackground(new Color(0, 150, 199));
-    
-    impresiones.setBackground(new Color(0, 150, 199));
-    Salir.setBackground(new Color(0, 150, 199));
-    
-    
-    itemEliminar.setForeground(Color.WHITE);
-    itemConsultar.setForeground(Color.WHITE);
-    itemModificar.setForeground(Color.WHITE);
-    itemAgregar.setForeground(Color.WHITE);
-    
-    itemEliminar2.setForeground(Color.WHITE);
-    itemConsultar2.setForeground(Color.WHITE);
-    itemModificar2.setForeground(Color.WHITE);
-    itemAgregar2.setForeground(Color.WHITE);
-    
-    itemAgendar3.setForeground(Color.WHITE);
-    itemCancelar3.setForeground(Color.WHITE);
-    itemModificar3.setForeground(Color.WHITE);
-    itemConsultar3.setForeground(Color.WHITE);
-    itemRecordatorios3.setForeground(Color.WHITE);
-    
-    impresiones.setForeground(Color.WHITE);
-    Salir.setForeground(Color.WHITE);
-    
   }
-  
+
   private void armado() {
+   
     jf_ventanaPrincipal.add(vistaEntrar.getJp_login());
   }
 
