@@ -133,7 +133,6 @@ public class VistaEntrar {
   }
 
   public JPanel getJp_principal(){
-    System.out.println("AAAAAAAAAAAAAAA");
     if(jp_panelprincipal == null){
 
 
