@@ -20,8 +20,12 @@ import controller.WindowMain;
 
 public class VistaEntrar {
 
+<<<<<<< HEAD
   
   JPanel jp_panelprincipal = new JPanel();
+=======
+  JPanel jp_panelprincipal;
+>>>>>>> d72d4cc51d87e9d28d2c51cc8782aedcfcb561ea
 
   // LOGIN
   JPanel jp_login;
@@ -49,9 +53,13 @@ public class VistaEntrar {
       
       jp_login.setBackground(new Color(173, 232, 244));
       jp_login.setLayout(null);
+<<<<<<< HEAD
       jp_panelprincipal.setBackground(new Color(173, 232, 244));
       
       
+=======
+
+>>>>>>> d72d4cc51d87e9d28d2c51cc8782aedcfcb561ea
       jtf_correo.setBounds(300, 150, 140, 20);
       
       jpf_pass.setBounds(300, 200, 140, 20);
@@ -123,7 +131,7 @@ public class VistaEntrar {
           menuBar.add(menuOtros);
           
           jf_ventanaPrincipal.setJMenuBar(menuBar);
-          jf_ventanaPrincipal.add(jp_panelprincipal);
+          jf_ventanaPrincipal.add(getJp_principal());
           jf_ventanaPrincipal.remove(jp_login);
           jf_ventanaPrincipal.repaint();
           jf_ventanaPrincipal.revalidate();
@@ -134,5 +142,38 @@ public class VistaEntrar {
     }
     return jp_login;
   }
+<<<<<<< HEAD
   
+=======
+
+  public JPanel getJp_principal(){
+    System.out.println("AAAAAAAAAAAAAAA");
+    if(jp_panelprincipal == null){
+
+
+      // VARIABLES
+      jp_panelprincipal = new JPanel();
+      ImageIcon logo = new ImageIcon("src/image/imagenMediana.png");
+      JLabel jl_imagen = new JLabel(logo);
+      
+      // ATRIBUTOS 
+      jl_imagen.setBounds(50, 50, 500, 400);
+
+      jp_panelprincipal.setBackground(new Color(173, 232, 244));
+
+
+      // ARMADO 
+      jp_panelprincipal.add(jl_imagen);
+
+
+      // ESCUCHAS 
+
+      // MOSTRAR 
+
+
+    }
+    return jp_panelprincipal;
+  }
+
+>>>>>>> d72d4cc51d87e9d28d2c51cc8782aedcfcb561ea
 }
