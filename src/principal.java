@@ -6,5 +6,3 @@ public class principal {
         new WindowMain();
     }
 }
-//hola carlos
-//hola pablo
