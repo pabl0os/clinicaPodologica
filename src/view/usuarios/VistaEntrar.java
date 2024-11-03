@@ -20,7 +20,7 @@ import controller.WindowMain;
 
 public class VistaEntrar {
 
-  JPanel jp_panelprincipal = new JPanel();
+  JPanel jp_panelprincipal;
 
   // LOGIN
   JPanel jp_login;
@@ -48,7 +48,6 @@ public class VistaEntrar {
 
       jp_login.setBackground(new Color(173, 232, 244));
       jp_login.setLayout(null);
-      jp_panelprincipal.setBackground(new Color(173, 232, 244));
 
       jtf_correo.setBounds(300, 150, 140, 20);
 
@@ -121,7 +120,7 @@ public class VistaEntrar {
           menuBar.add(menuOtros);
 
           jf_ventanaPrincipal.setJMenuBar(menuBar);
-          jf_ventanaPrincipal.add(jp_panelprincipal);
+          jf_ventanaPrincipal.add(getJp_principal());
           jf_ventanaPrincipal.remove(jp_login);
           jf_ventanaPrincipal.repaint();
           jf_ventanaPrincipal.revalidate();
@@ -131,6 +130,35 @@ public class VistaEntrar {
       // MOSTRAR
     }
     return jp_login;
+  }
+
+  public JPanel getJp_principal(){
+    System.out.println("AAAAAAAAAAAAAAA");
+    if(jp_panelprincipal == null){
+
+
+      // VARIABLES
+      jp_panelprincipal = new JPanel();
+      ImageIcon logo = new ImageIcon("src/image/imagenMediana.png");
+      JLabel jl_imagen = new JLabel(logo);
+      
+      // ATRIBUTOS 
+      jl_imagen.setBounds(50, 50, 500, 400);
+
+      jp_panelprincipal.setBackground(new Color(173, 232, 244));
+
+
+      // ARMADO 
+      jp_panelprincipal.add(jl_imagen);
+
+
+      // ESCUCHAS 
+
+      // MOSTRAR 
+
+
+    }
+    return jp_panelprincipal;
   }
 
 }
