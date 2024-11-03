@@ -2,9 +2,7 @@ package view.Citas;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.sql.Date;
 import java.time.LocalDate;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,14 +17,15 @@ import javax.swing.SpinnerModel;
 public class VistaCitas {
     private JPanel jp_vistaPrincipalCitas;
     private JPanel jp_vistaHorarios;
-    private JPanel jp_vistaFechas;
+    private JPanel jp_vistaCalendario;
     private JPanel jp_vistaRecordatorios;
     private JPanel jp_VistaAgregarCliente;
+    private LocalDate fechaActual = LocalDate.now();
+    private LocalDate fechaInicialdelMes = LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1);
 
     public VistaCitas() {
         JFrame ventana = new JFrame();
-        VistaFechas();
-        ventana.add(jp_vistaFechas);
+        ventana.add(vistaCalendarioModificado(fechaActual.getYear(),7));
         ventana.setSize(800, 600);
         ventana.setLocationRelativeTo(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,74 +87,66 @@ public class VistaCitas {
         return jp_vistaHorarios;
     }
 
-    // Vista Fechas
-    public JPanel VistaFechas() {
+    private JPanel vistaCalendarioModificado(int año,int mes) {
+        fechaInicialdelMes = LocalDate.of(año, mes, 1);
+        return VistaCalendario(fechaInicialdelMes);
+    }
+
+    private JPanel VistaCalendario(LocalDate FechaCalendario) {
+
+        // if (jp_vistaCalendario == null) {
         // Variables
-        jp_vistaFechas = new JPanel();
-        JButton[][] jb_DiasMes = new JButton[5][7];
-        GridLayout estructura = new GridLayout(6, 7);
-        String[] diasSemanaTexto = { "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
+        jp_vistaCalendario = new JPanel();
+        JButton[][] jb_DiasMes = new JButton[6][7];
+        GridLayout estructura = new GridLayout(7, 7);
+        String[] diasSemanaTexto = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
         JLabel[] jl_diasSemanaColumnas = new JLabel[7];
-        // String[][] numeroDelDia = new String[5][7];
-        LocalDate fechaActual = LocalDate.now();
-        LocalDate fechaInicial = LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1);
-        int diasEnElMes = fechaActual.lengthOfMonth();
-        // DayOfWeek diaDelaSemana = fechaActual.getDayOfWeek();
-         int contadorSemanas = 0;
-         Date fecha = Date.valueOf(fechaActual);
+        int diasEnElMes = FechaCalendario.lengthOfMonth();
+        int contadorSemanas = 0;
+        int diaEntreSemana = FechaCalendario.getDayOfWeek().getValue() - 1;
+
+        int diaMes = FechaCalendario.getDayOfMonth();
         // Atributos
-        jp_vistaFechas.setBounds(0, 0, 600, 400);
-        jp_vistaFechas.setBackground(new Color(173, 232, 244));
-        jp_vistaFechas.setLayout(estructura);
-        System.out.println(fecha.getDay());
-        System.out.println(fecha.getDate());
+        jp_vistaCalendario.setBounds(0, 0, 400, 200);
+        jp_vistaCalendario.setBackground(new Color(173, 232, 244));
+        jp_vistaCalendario.setLayout(estructura);
 
-
-
-
-
-
-        // For para agregar los componentes inicio del mes
+        // Armado
+        // For para crear y agregar los componentes al panel
         for (int semana = 0; semana < estructura.getRows(); semana++) {
             for (int dia = 0; dia < estructura.getColumns(); dia++) {
                 // Se agregan lbl al panel con los dias de la semana
                 if (semana < 1) {
                     jl_diasSemanaColumnas[dia] = new JLabel();
                     jl_diasSemanaColumnas[dia].setText(diasSemanaTexto[dia]);
-                    jp_vistaFechas.add(jl_diasSemanaColumnas[dia]);
-                    
+                    jp_vistaCalendario.add(jl_diasSemanaColumnas[dia]);
                 }
+                // Se agregan los botones
                 if (semana > 0) {
-                    jb_DiasMes[semana-1][dia] = new JButton();
-                    jb_DiasMes[semana][dia].setName(""+dia);
-                    //El de agregar el texto va en otro metodo
-                        // jb_DiasMes[semana-1][dia].setText(numeroDelDia[semana-1][dia]);
-                        jp_vistaFechas.add(jb_DiasMes[semana-1][dia]);
-                        
-                        System.out.println("Semana: "+semana +"\t Dia: "+dia);
-                    }
+                    jb_DiasMes[semana - 1][dia] = new JButton();
+                    jp_vistaCalendario.add(jb_DiasMes[semana - 1][dia]);
+                }
             }
-           
+
         }
 
-        for (int dia = 1; dia <diasEnElMes ; dia++) {
-            if(dia>6){
-                dia=0;
+        for (int dia = diaEntreSemana; diaMes <= diasEnElMes; dia++) {
+            if (dia > 6) {
+                dia = 0;
+                contadorSemanas++;
             }
-            jb_DiasMes[contadorSemanas][dia].setText("");
-            
-            if(contadorSemanas>5){
+            if (contadorSemanas > 5) {
                 break;
             }
-            contadorSemanas++;
-            
+            jb_DiasMes[contadorSemanas][dia].setText("" + diaMes);
+            diaMes++;
+            diaEntreSemana++;
+
         }
-        
 
-
-        // Armado
         // Escuchas
-        return jp_vistaFechas;
+        // }
+        return jp_vistaCalendario;
     }
 
     // Vista Recordatorios
@@ -178,6 +169,8 @@ public class VistaCitas {
         return jp_VistaAgregarCliente;
     }
 
-    //hola carlos
+    public static void main(String[] args) {
+        new VistaCitas();
+    }
 
 }
