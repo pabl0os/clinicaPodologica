@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
+import javax.swing.border.BevelBorder;
 
 public class VistaCitas {
     private JPanel jp_vistaPrincipalCitas;
@@ -85,11 +86,27 @@ public class VistaCitas {
         jp_vistaFecha = new JPanel();
         JButton jb_volver = new JButton("Volver");
         JButton jb_Seleccionar = new JButton("Seleccionar");
-        JButton jb_Podologo = new JButton("Podologo");
+        JButton jb_Podologo1 = new JButton("Podologo 1");
+        JButton jb_Podologo2 = new JButton("Podologo 2");
+        JButton jb_mesAnterior = new JButton("Mes Anterior");
+        JButton jb_mesSiguiente = new JButton("Mes Siguiente");
         JLabel jl_año_mes = new JLabel();
+        JLabel jl_horariodisponible = new JLabel("Horario disponible");
+        JLabel jl_diaLleno = new JLabel("Dia lleno");
+        JLabel jl_diaPasado = new JLabel("Dia Pasado");
         // Armado
         jp_vistaFecha.add(vistaCalendario(fechaInicialdelMes));
         jp_vistaFecha.add(jl_año_mes);
+        jp_vistaFecha.add(jb_volver);
+        jp_vistaFecha.add(jb_mesAnterior);
+        jp_vistaFecha.add(jb_mesSiguiente);
+        jp_vistaFecha.add(jb_Seleccionar);
+        jp_vistaFecha.add(jb_Podologo1);
+        jp_vistaFecha.add(jb_Podologo2);
+        jp_vistaFecha.add(jl_diaPasado);
+        jp_vistaFecha.add(jl_diaLleno);
+        jp_vistaFecha.add(jl_horariodisponible);
+
         // Atributos
         jp_vistaFecha.setSize(800, 600);
         jp_vistaCalendario.setLocation(150, 150);
@@ -99,11 +116,27 @@ public class VistaCitas {
         jl_año_mes.setText("Año: " + fechaInicialdelMes.getYear() +
                 "  Mes: " + fechaInicialdelMes.getMonth().getValue());
         jl_año_mes.setFont(new Font("Carlos", Font.ITALIC, 18));
+        jb_volver.setBounds(25, 50, 100, 40);
+        jb_mesAnterior.setBounds(10, 270, 130, 40);
+        jb_mesSiguiente.setBounds(660, 270, 120, 40);
+        jb_Seleccionar.setBounds(650, 50, 130, 40);
+        jb_Podologo1.setBounds(150, 110, 100, 40);
+        jb_Podologo2.setBounds(250, 110, 100, 40);
+        jl_diaPasado.setBackground(new Color(223, 227, 232));
+        jl_diaLleno.setBackground(new Color(255, 217, 217));
+        jl_horariodisponible.setBackground(new Color(195, 247,200));
+        jl_diaPasado.setOpaque(true);
+        jl_diaLleno.setOpaque(true);
+        jl_horariodisponible.setOpaque(true);
+        jl_diaPasado.setBounds(160, 50, 70, 40);
+        jl_diaLleno.setBounds(240, 50, 50, 40);
+        jl_horariodisponible.setBounds(300, 50, 110, 40);
+
         // Escuchas
         return jp_vistaFecha;
     }
 
-    private JPanel vistaCalendarioModificado(int año, int mes) {
+    private JPanel vistaCalendarioRecursivo(int año, int mes) {
         fechaInicialdelMes = LocalDate.of(año, mes, 1);
         return vistaCalendario(fechaInicialdelMes);
     }
@@ -135,14 +168,17 @@ public class VistaCitas {
                 if (semana < 1) {
                     jl_diasSemanaColumnas[dia] = new JLabel();
                     jl_diasSemanaColumnas[dia].setText(diasSemanaTexto[dia]);
+                    jl_diasSemanaColumnas[dia].setBackground(new Color(0,150,199));
+                    jl_diasSemanaColumnas[dia].setOpaque(true);
+                    jl_diasSemanaColumnas[dia].setBorder(new BevelBorder(BevelBorder.RAISED));
                     jp_vistaCalendario.add(jl_diasSemanaColumnas[dia]);
                     jp_vistaCalendario.setBackground(new Color(238, 238, 238));
+
                 }
-                // Se agregan los botones
+                // Se agregan los botones al panel
                 if (semana > 0) {
                     jb_DiasMes[semana - 1][dia] = new JButton();
                     jb_DiasMes[semana - 1][dia].setBackground(Color.WHITE);
-                    System.out.println(jb_DiasMes[semana - 1][dia].getBackground());
                     jp_vistaCalendario.add(jb_DiasMes[semana - 1][dia]);
                 }
             }
