@@ -1,7 +1,7 @@
 package view.pacientes;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class vistaPacientes {
     public static void main(String[] args) {
@@ -82,7 +82,7 @@ public class vistaPacientes {
         jb_ButtonEliminar.setBounds(650, 350, 80, 30);
         panel.add(jb_ButtonEliminar);
 
-        String[] opciones = { "Correo", "Nombre", "Teléfono" };
+        String[] opciones = { "Nombre","Correo", "Teléfono" };
         JComboBox<String> comboBox = new JComboBox<>(opciones);
         comboBox.setBounds(500, 30, 100, 30);
         panel.add(comboBox);
