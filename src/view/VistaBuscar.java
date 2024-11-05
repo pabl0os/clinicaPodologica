@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,52 +13,19 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class VistaBuscar {
+    private static JButton jb_botonPanel;
     public static JPanel getVistaBuscar(String[] columnas, String[] opcionesComboBox, String textButton,
-            boolean botonRegistrarPaciente, ActionListener escuchaboton) {
-
-        JFrame jf_Frame = new JFrame();
-        jf_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jf_Frame.setSize(800, 600);
-        jf_Frame.setLocationRelativeTo(null);
+    boolean botonRegistrarPaciente) {
+        
         // VARIABLES
+        jb_botonPanel = new JButton(textButton);
         JPanel jp_panel = new JPanel();
         JTextField jtf_busqueda = new JTextField();
         JButton jb_Buscar = new JButton("Buscar");
-        JButton jb_botonPanel = new JButton(textButton);
         JButton jb_Aqui = new JButton("Aquí");
         JLabel jl_Aqui = new JLabel("<html>Si no encuentras al <br> paciente, registralo!</html>");
 
-        Object[][] datos = {
-                // { "Juan Pérez", "123456789", "juan@example.com","prueba" }
-                // ,
-                // { "Ana Gómez", "987654321", "ana@example.com" },
-                // { "Luis Martínez", "456789123", "luis@example.com" },
-                // { "Marta Sánchez", "321654987", "marta@example.com" },
-                // { "Carlos Ruiz", "654321789", "carlos@example.com" },
-                // { "Laura Torres", "789123456", "laura@example.com" },
-                // { "Javier Fernández", "135792468", "javier@example.com" },
-                // { "Patricia Díaz", "246813579", "patricia@example.com" },
-                // { "Pedro López", "369258147", "pedro@example.com" },
-                // { "Juan Pérez", "123456789", "juan@example.com" },
-                // { "Ana Gómez", "987654321", "ana@example.com" },
-                // { "Luis Martínez", "456789123", "luis@example.com" },
-                // { "Marta Sánchez", "321654987", "marta@example.com" },
-                // { "Carlos Ruiz", "654321789", "carlos@example.com" },
-                // { "Laura Torres", "789123456", "laura@example.com" },
-                // { "Javier Fernández", "135792468", "javier@example.com" },
-                // { "Patricia Díaz", "246813579", "patricia@example.com" },
-                // { "Pedro López", "369258147", "pedro@example.com" },
-                // { "Juan Pérez", "123456789", "juan@example.com" },
-                // { "Ana Gómez", "987654321", "ana@example.com" },
-                // { "Luis Martínez", "456789123", "luis@example.com" },
-                // { "Marta Sánchez", "321654987", "marta@example.com" },
-                // { "Carlos Ruiz", "654321789", "carlos@example.com" },
-                // { "Laura Torres", "789123456", "laura@example.com" },
-                // { "Javier Fernández", "135792468", "javier@example.com" },
-                // { "Patricia Díaz", "246813579", "patricia@example.com" },
-                // { "Pedro López", "369258147", "pedro@example.com" },
-                // { "Sofía Hernández", "147258369", "sofia@example.com" }
-        };
+        Object[][] datos; 
 
         int renglones = 30;
         int colum = 4;
@@ -84,7 +50,7 @@ public class VistaBuscar {
 
         jb_botonPanel.setBackground(new Color(0, 150, 199));
         jb_botonPanel.setForeground(Color.WHITE);
-        jb_botonPanel.setBounds(650, 250, 80, 30);
+        jb_botonPanel.setBounds(650, 250, 110, 50);
 
         JComboBox<String> comboBox = new JComboBox<>(opcionesComboBox);
         comboBox.setBounds(500, 30, 100, 30);
@@ -107,24 +73,21 @@ public class VistaBuscar {
             jp_panel.add(jl_Aqui);
         }
 
-        jf_Frame.add(jp_panel);
         // ESCUCHAS
-        jb_botonPanel.addActionListener(escuchaboton);
-
-
-        // MOSTRAR
-        jf_Frame.setVisible(true);
-
-        return jp_panel;
-    }
-
-    public static void main(String[] args) {
-        String[] columnas = { "Nombre", "Telefono", "Correo", "Cita" };
-        VistaBuscar.getVistaBuscar(columnas, columnas, "Eliminar", true, new ActionListener() {
+        jb_Aqui.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
             }
+            
         });
+        
+        // MOSTRAR
+        
+        return jp_panel;
+    }
+    public static void setEscucha(ActionListener escuchaBotton){
+        jb_botonPanel.addActionListener(escuchaBotton);
     }
 
 }

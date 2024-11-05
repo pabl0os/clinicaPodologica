@@ -16,10 +16,10 @@ import javax.swing.JTextField;
 
 public class VistaEntrar {
 
-  JPanel jp_panelprincipal;
+  public static JPanel jp_panelprincipal;
 
   // LOGIN
-  JPanel jp_login;
+  public static JPanel jp_login;
 
   public JPanel getJp_login() {
     if (jp_login == null) {
