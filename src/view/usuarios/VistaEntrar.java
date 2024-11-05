@@ -142,14 +142,15 @@ public class VistaEntrar {
       JLabel jl_imagen = new JLabel(logo);
       
       // ATRIBUTOS 
-      jl_imagen.setBounds(50, 50, 500, 400);
+      jl_imagen.setBounds(120, 50, 550, 400);
 
       jp_panelprincipal.setBackground(new Color(173, 232, 244));
+
+      jp_panelprincipal.setLayout(null);
 
 
       // ARMADO 
       jp_panelprincipal.add(jl_imagen);
-
 
       // ESCUCHAS 
 
