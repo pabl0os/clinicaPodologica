@@ -1,12 +1,10 @@
 package view.pacientes;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import controller.WindowMain;
 
 public class vistaPacientes {
 

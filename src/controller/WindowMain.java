@@ -11,6 +11,7 @@ import javax.swing.*;
 import view.VistaBuscar;
 import view.pacientes.vistaPacientes;
 import view.usuarios.VistaEntrar;
+import view.usuarios.VistaGestionUsuarios;
 
 public class WindowMain {
 
@@ -229,12 +230,108 @@ public class WindowMain {
         itemAgregar2Usuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                quitarPanel();
+                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
+                                                                        "Teléfono: 2348742<br>" + 
+                                                                        "Correo: ajdfada¿Ees correcto?</html>");
+                        quitarPanel();
+                        jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
+                                                                        "Teléfono: 2348742<br>" + 
+                                                                        "Correo: ajdfada¿Ees correcto?</html>");
+                                quitarPanel();
+                                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaPermisos());
+                            }
+                            
+                        }));
+                    }
+                    
+                }));
+            }
+            
+        });
+
+        itemEliminar2Usuarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] columStrings = {"Nombre","Contraseña","Correo","Rol"};
+                quitarPanel();
+                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Eliminar", false));
+                VistaBuscar.setEscucha(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JOptionPane.showMessageDialog(null, "<html>¿Estas seguro de eliminar el usuario? <br>Nombre: Juan<br>" + 
+                        "Teléfono: 2348742<br>" + 
+                        "Correo: ajdfada¿Ees correcto?</html>");
+                    }
+                    
+                });
+            }
+            
+        });
+
+        itemModificar2Usuarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quitarPanel();
+                String[] columStrings = {"Nombre","Contraseña","Correo","Rol"};
+                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Modificar", false));
+                VistaBuscar.setEscucha(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        quitarPanel();
+                        jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                quitarPanel();
+                                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaPermisos(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
+                                        "Teléfono: 2348742<br>" + 
+                                        "Correo: ajdfada¿Ees correcto?</html>");
+                                        quitarPanel();
+                                        jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Modificar", false));
+                                        System.out.println("holaaa");
+                                    }
+                                    
+                                }));
+                            }
+                            
+                        }));
+                    }
+                    
+                });
+            }
+            
+        });
+
+        itemConsultar2Usuarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quitarPanel();
+                String[] columnas = { "Nombre", "Telefono", "correo" };
+                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columnas, columnas, "Consultar", false));
+
             }
             
         });
         // CITAS
+
         // OTROS
+        ItemSalirOtros.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quitarPanel();
+                jf_ventanaPrincipal.add(vistaEntrar.getJp_login());
+            }
+            
+        });
         itemAgendar3Citas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
