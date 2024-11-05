@@ -25,6 +25,7 @@ public class VistaCitas {
     private JPanel jp_VistaAgregarCliente;
     private LocalDate fechaActual = LocalDate.now();
     private LocalDate fechaInicialdelMes = LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1);
+    private JButton jb_Volver = new JButton("Volver");
 
     public VistaCitas() {
         JFrame ventana = new JFrame();
@@ -84,7 +85,6 @@ public class VistaCitas {
     public JPanel VistaFecha() {
         // Variables
         jp_vistaFecha = new JPanel();
-        JButton jb_volver = new JButton("Volver");
         JButton jb_Seleccionar = new JButton("Seleccionar");
         JButton jb_Podologo1 = new JButton("Podologo 1");
         JButton jb_Podologo2 = new JButton("Podologo 2");
@@ -97,7 +97,7 @@ public class VistaCitas {
         // Armado
         jp_vistaFecha.add(vistaCalendario(fechaInicialdelMes));
         jp_vistaFecha.add(jl_año_mes);
-        jp_vistaFecha.add(jb_volver);
+        jp_vistaFecha.add(jb_Volver);
         jp_vistaFecha.add(jb_mesAnterior);
         jp_vistaFecha.add(jb_mesSiguiente);
         jp_vistaFecha.add(jb_Seleccionar);
@@ -116,21 +116,24 @@ public class VistaCitas {
         jl_año_mes.setText("Año: " + fechaInicialdelMes.getYear() +
                 "  Mes: " + fechaInicialdelMes.getMonth().getValue());
         jl_año_mes.setFont(new Font("Carlos", Font.ITALIC, 18));
-        jb_volver.setBounds(25, 50, 100, 40);
+        jb_Volver.setBounds(25, 50, 100, 40);
         jb_mesAnterior.setBounds(10, 270, 130, 40);
         jb_mesSiguiente.setBounds(660, 270, 120, 40);
         jb_Seleccionar.setBounds(650, 50, 130, 40);
-        jb_Podologo1.setBounds(150, 110, 100, 40);
-        jb_Podologo2.setBounds(250, 110, 100, 40);
+        jb_Podologo1.setBounds(152, 110, 100, 40);
+        jb_Podologo2.setBounds(252, 110, 100, 40);
+        jb_Podologo1.setBackground(Color.white);
+        jb_Podologo2.setBackground(Color.white);
+        jl_diaPasado.setBounds(160, 50, 70, 40);
+        jl_diaLleno.setBounds(240, 50, 50, 40);
+        jl_horariodisponible.setBounds(300, 50, 110, 40);
         jl_diaPasado.setBackground(new Color(223, 227, 232));
         jl_diaLleno.setBackground(new Color(255, 217, 217));
         jl_horariodisponible.setBackground(new Color(195, 247,200));
         jl_diaPasado.setOpaque(true);
         jl_diaLleno.setOpaque(true);
         jl_horariodisponible.setOpaque(true);
-        jl_diaPasado.setBounds(160, 50, 70, 40);
-        jl_diaLleno.setBounds(240, 50, 50, 40);
-        jl_horariodisponible.setBounds(300, 50, 110, 40);
+        
 
         // Escuchas
         return jp_vistaFecha;
@@ -180,6 +183,7 @@ public class VistaCitas {
                     jb_DiasMes[semana - 1][dia] = new JButton();
                     jb_DiasMes[semana - 1][dia].setBackground(Color.WHITE);
                     jp_vistaCalendario.add(jb_DiasMes[semana - 1][dia]);
+                    jb_DiasMes[semana-1][dia].setEnabled(false);
                 }
             }
 
@@ -194,6 +198,7 @@ public class VistaCitas {
                 break;
             }
             jb_DiasMes[contadorSemanas][dia].setText("" + diaMes);
+            jb_DiasMes[contadorSemanas][dia].setEnabled(true);
             diaMes++;
             diaEntreSemana++;
 
@@ -203,12 +208,50 @@ public class VistaCitas {
         // }
         return jp_vistaCalendario;
     }
+    //Vista Fecha y Vistas Calendario Van Juntos
 
     // Vista Horario
     public JPanel VistaHorario() {
         // Variables
-        // Atributos
+        jp_vistaHorarios = new JPanel();
+        JLabel jl_Fecha = new JLabel(""+fechaActual);
+        JPanel jp_horarios = new JPanel(new GridLayout(5, 2));
+        JScrollPane scroll_panelHorarios = new JScrollPane(jp_horarios);
+        JLabel jl_horariodisponible = new JLabel("Horario disponible");
+        JLabel jl_horarioOcupado = new JLabel("Horario Ocupado");
+        JButton [] jb_horarios = new JButton[10];
+        JButton jb_agendar = new JButton("Agendar");
         // Armado
+        jp_vistaHorarios.add(jb_Volver);
+        jp_vistaHorarios.add(jl_Fecha);
+        jp_vistaHorarios.add(scroll_panelHorarios);
+        jp_vistaHorarios.add(jl_horariodisponible);
+        jp_vistaHorarios.add(jl_horarioOcupado);
+        jp_vistaHorarios.add(jb_agendar);
+        for(int i = 0; i<10;i++){
+            jb_horarios[i] = new JButton((9+i)+":00");
+            jp_horarios.add(jb_horarios[i]);
+            jb_horarios[i].setBackground(Color.WHITE);
+            
+        }
+        // Atributos
+        jp_vistaHorarios.setSize(800, 600);
+        jp_vistaHorarios.setBackground(new Color(173, 232, 244));
+        jp_vistaHorarios.setLayout(null);
+        jb_Volver.setBounds(25, 50, 100, 40);
+        scroll_panelHorarios.setBounds(10, 100, 400, 400);
+        jp_horarios.setSize(400, 400);
+        jl_horariodisponible.setBounds(450, 100, 120,50);
+        jl_horariodisponible.setBackground(new Color(195, 247,200));
+        jl_horariodisponible.setOpaque(true);
+        jl_horarioOcupado.setBounds(580,100,120,50  );
+        jl_horarioOcupado.setBackground(new Color(255, 217, 217));
+        jl_horarioOcupado.setOpaque(true);
+        jl_Fecha.setText(""+fechaActual.atTime(9,0));
+        jl_Fecha.setBounds(500, 200, 200,50);
+        jb_agendar.setBounds(500, 270, 100, 50);
+        
+        
         // Escuchas
         return jp_vistaHorarios;
     }
