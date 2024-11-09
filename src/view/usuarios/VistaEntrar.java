@@ -1,22 +1,18 @@
 package view.usuarios;
 
+import controller.WindowMain;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import controller.WindowMain;
 
 public class VistaEntrar {
 
@@ -64,30 +60,6 @@ public class VistaEntrar {
       jp_login.add(jl_imagen);
       jp_login.add(jb_entrar);
 
-      JMenu menuPacientes = WindowMain.menuPacientes;
-      JMenu menuUsuarios = WindowMain.menuUsuarios;
-      JMenu menuCitas = WindowMain.menuCitas;
-      JMenu menuOtros = WindowMain.menuOtros;
-
-      JMenuItem itemConsultar = WindowMain.itemConsultar;
-      JMenuItem itemEliminar = WindowMain.itemEliminar;
-      JMenuItem itemModificar = WindowMain.itemModificar;
-      JMenuItem itemAgregar = WindowMain.itemAgregar;
-
-      JMenuItem itemEliminar2 = WindowMain.itemEliminar2;
-      JMenuItem itemConsultar2 = WindowMain.itemConsultar2;
-      JMenuItem itemModificar2 = WindowMain.itemModificar2;
-      JMenuItem itemAgregar2 = WindowMain.itemAgregar2;
-
-      JMenuItem itemAgendar3 = WindowMain.itemAgendar3;
-      JMenuItem itemCancelar3 = WindowMain.itemCancelar3;
-      JMenuItem itemModificar3 = WindowMain.itemModificar3;
-      JMenuItem itemConsultar3 = WindowMain.itemConsultar3;
-      JMenuItem itemRecordatorios3 = WindowMain.itemRecordatorios3;
-
-      JMenuItem impresiones = WindowMain.impresiones;
-      JMenuItem Salir = WindowMain.Salir;
-
       JMenuBar menuBar = WindowMain.menuBar;
       JFrame jf_ventanaPrincipal = WindowMain.jf_ventanaPrincipal;
 
@@ -95,29 +67,6 @@ public class VistaEntrar {
       jb_entrar.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-          menuPacientes.add(itemEliminar);
-          menuPacientes.add(itemConsultar);
-          menuPacientes.add(itemModificar);
-          menuPacientes.add(itemAgregar);
-
-          menuUsuarios.add(itemAgregar2);
-          menuUsuarios.add(itemEliminar2);
-          menuUsuarios.add(itemModificar2);
-          menuUsuarios.add(itemConsultar2);
-
-          menuCitas.add(itemAgendar3);
-          menuCitas.add(itemCancelar3);
-          menuCitas.add(itemModificar3);
-          menuCitas.add(itemConsultar3);
-          menuCitas.add(itemRecordatorios3);
-
-          menuOtros.add(impresiones);
-          menuOtros.add(Salir);
-
-          menuBar.add(menuPacientes);
-          menuBar.add(menuUsuarios);
-          menuBar.add(menuCitas);
-          menuBar.add(menuOtros);
 
           jf_ventanaPrincipal.setJMenuBar(menuBar);
           jf_ventanaPrincipal.add(getJp_principal());
