@@ -4,6 +4,7 @@
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "c:\\Users\\pabli\\Downloads\\mysql-connector-j-9.1.0 (1).jar"
     ]
 }
