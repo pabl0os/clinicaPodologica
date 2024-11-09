@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import view.VistaBuscar;
 import view.pacientes.vistaPacientes;
 import view.usuarios.VistaEntrar;
 import view.usuarios.VistaGestionUsuarios;
@@ -144,114 +143,45 @@ public class WindowMain {
         itemEliminarPacientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitarPanel();
-                String[] columnas = { "Nombre", "Telefono", "correo" };
-                jf_ventanaPrincipal
-                        .add(VistaBuscar.getVistaBuscar(columnas, columnas, "Eliminar", false));
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, "se eliminara el usuario ¿Esta seguro?");
-                    }
-
-                });
+               quitarPanel();
+               jf_ventanaPrincipal.add(vistaPacientes.vistaBuscarEliminar());
             }
         });
 
         itemConsultarPacientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitarPanel();
-                String[] columnas = { "Nombre", "Telefono", "correo" };
-                jf_ventanaPrincipal.add(
-                        VistaBuscar.getVistaBuscar(columnas, columnas, "<html>Consultar <br>Historial Clinico</html>",
-                                false));
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null,
-                                "se te redijira al repositorio del historial clinico ¿Deseas continuar?");
-                    }
-                });
-                jf_ventanaPrincipal.revalidate(); // Actualizar el contenedor
-                jf_ventanaPrincipal.repaint(); // Repintar la ventana
+               quitarPanel();
+               jf_ventanaPrincipal.add(vistaPacientes.vistaBuscarConsultar());
             }
         });
 
         itemModificarPacientes.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 quitarPanel();
-                String[] columnas = { "Nombre", "Telefono", "correo" };
-                JPanel vistaModificar = VistaBuscar.getVistaBuscar(columnas, columnas, "Modificar",
-                        false);
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        quitarPanel();
-                        jf_ventanaPrincipal.add(vistaPacientes.vistaAgregar());
-                        vistaPacientes.setListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(null, "<html>¿Los datos a modificar son correctos?"
-                                + "<br> Nombre: Pepe"
-                                + "<br> Teléfono: 234324"
-                                + "<br> Correo: ajdfada</html>");
-                                quitarPanel();
-                                jf_ventanaPrincipal.add(vistaModificar);
-                            }
-                            
-                        });
-                    }
-                });
-                jf_ventanaPrincipal.add(vistaModificar);
+                jf_ventanaPrincipal.add(vistaPacientes.vistaBuscarModificar(""));
             }
+           
+            
         });
 
         itemAgregarPacientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitarPanel();
-                jf_ventanaPrincipal.add(vistaPacientes.vistaAgregar());
-                vistaPacientes.setListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, "<html>¿Los datos a modificar son correctos?"
-                                + "<br> Nombre: Pepe"
-                                + "<br> Teléfono: 234324"
-                                + "<br> Correo: ajdfada</html>");
-                        jf_ventanaPrincipal.add(vistaPacientes.vistaAgregar());
-                    }
-                });
+               quitarPanel();
+               jf_ventanaPrincipal.add(vistaPacientes.vistaAgregar(""));
             }
 
         });
-        // USUARIOS
+
+        // USUARIOS---------------------------------------------------------------------------------------
         itemAgregar2Usuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitarPanel();
-                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
-                                                                        "Teléfono: 2348742<br>" + 
-                                                                        "Correo: ajdfada¿Ees correcto?</html>");
-                        quitarPanel();
-                        jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
-                                                                        "Teléfono: 2348742<br>" + 
-                                                                        "Correo: ajdfada¿Ees correcto?</html>");
-                                quitarPanel();
-                                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaPermisos());
-                            }
-                            
-                        }));
-                    }
-                    
-                }));
+               quitarPanel();
+               jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuarioAgregar(""));
             }
             
         });
@@ -259,18 +189,8 @@ public class WindowMain {
         itemEliminar2Usuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] columStrings = {"Nombre","Contraseña","Correo","Rol"};
                 quitarPanel();
-                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Eliminar", false));
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, "<html>¿Estas seguro de eliminar el usuario? <br>Nombre: Juan<br>" + 
-                        "Teléfono: 2348742<br>" + 
-                        "Correo: ajdfada¿Ees correcto?</html>");
-                    }
-                    
-                });
+                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaBuscarEliminar());
             }
             
         });
@@ -278,35 +198,8 @@ public class WindowMain {
         itemModificar2Usuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitarPanel();
-                String[] columStrings = {"Nombre","Contraseña","Correo","Rol"};
-                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Modificar", false));
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        quitarPanel();
-                        jf_ventanaPrincipal.add(VistaGestionUsuarios.vistAgregarUsuario(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                quitarPanel();
-                                jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaPermisos(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        JOptionPane.showMessageDialog(null, "<html>Nombre: Juan<br>" + 
-                                        "Teléfono: 2348742<br>" + 
-                                        "Correo: ajdfada¿Ees correcto?</html>");
-                                        quitarPanel();
-                                        jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columStrings, columStrings, "Modificar", false));
-                                        System.out.println("holaaa");
-                                    }
-                                    
-                                }));
-                            }
-                            
-                        }));
-                    }
-                    
-                });
+               quitarPanel();
+               jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaBuscarModificar(""));
             }
             
         });
@@ -315,15 +208,13 @@ public class WindowMain {
             @Override
             public void actionPerformed(ActionEvent e) {
                 quitarPanel();
-                String[] columnas = { "Nombre", "Telefono", "correo" };
-                jf_ventanaPrincipal.add(VistaBuscar.getVistaBuscar(columnas, columnas, "Consultar", false));
-
+                WindowMain.jf_ventanaPrincipal.add(VistaGestionUsuarios.vistaBuscarConsultar());
             }
             
         });
-        // CITAS
+        // CITAS---------------------------------------------------------------------------------------
 
-        // OTROS
+        // OTROS---------------------------------------------------------------------------------------
         ItemSalirOtros.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -332,29 +223,15 @@ public class WindowMain {
             }
             
         });
-        itemAgendar3Citas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String[] columnas = { "nombre", "correo", "telefono", "cita" };
-                jf_ventanaPrincipal
-                        .add(VistaBuscar.getVistaBuscar(columnas, columnas, "Seleccionar", true));
-                VistaBuscar.setEscucha(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                    }
-                });
-                jf_ventanaPrincipal.repaint();
-                jf_ventanaPrincipal.revalidate();
-            }
-
-        });
+       
     }
 
     private void mostrar() {
         jf_ventanaPrincipal.setVisible(true);
     }
 
+
+    
     public static void quitarPanel() {
         SwingUtilities.invokeLater(() -> {
             for (Component comp : jf_ventanaPrincipal.getContentPane().getComponents()) {
@@ -366,7 +243,6 @@ public class WindowMain {
             jf_ventanaPrincipal.revalidate(); // Actualizar el contenedor
             jf_ventanaPrincipal.repaint(); // Repintar la ventana
         });
-
     }
 
 }

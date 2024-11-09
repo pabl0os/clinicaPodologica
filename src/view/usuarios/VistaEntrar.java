@@ -19,10 +19,9 @@ public class VistaEntrar {
   public static JPanel jp_panelprincipal;
 
   // LOGIN
-  public static JPanel jp_login;
-
+  
   public JPanel getJp_login() {
-    if (jp_login == null) {
+     JPanel jp_login;
       jp_login = new JPanel();
 
       // variables
@@ -77,7 +76,6 @@ public class VistaEntrar {
       });
 
       // MOSTRAR
-    }
     return jp_login;
   }
 
