@@ -131,7 +131,6 @@ public class WindowMain {
     }
 
     private void escuchas() {
-
     }
 
     private void mostrar() {
