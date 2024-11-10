@@ -138,6 +138,8 @@ public class WindowMain {
     }
 
     private void escuchas() {
+<<<<<<< HEAD
+=======
 
         // PACIENTES---------------------------------------------------------------------------------------
         itemEliminarPacientes.addActionListener(new ActionListener() {
@@ -224,6 +226,7 @@ public class WindowMain {
             
         });
        
+>>>>>>> 4c59ba95be566b8ebd949d99480ef558b52c8d3d
     }
 
     private void mostrar() {
