@@ -36,17 +36,37 @@ public class VistaGestionUsuarios {
             " <span style='color:red;'>No se realizo correctamente la eliminacion</span></html>";
       JLabel jl_textoinformativo = new JLabel(texto);
 
-      Object[][] datos;
-
-      int renglones = 30;
-      int colum = columnas.length;
-      datos = new Object[renglones][colum];
-      for (int i = 0; i < renglones; i++) {
-         for (int j = 0; j < colum; j++) {
-            datos[i][j] = "texto de prueba";
-         }
-      }
-
+      Object[][] datos =  {
+         {"Ana Pérez", "ana1234", "ana.perez@example.com", "Asistente"},
+         {"Carlos López", "carlospass", "carlos.lopez@example.com", "Podólogo"},
+         {"María Gómez", "mariag123", "maria.gomez@example.com", "Administrador"},
+         {"Luis Torres", "luispass", "luis.torres@example.com", "Asistente"},
+         {"Sofía Castro", "sofiac123", "sofia.castro@example.com", "Asistente"},
+         {"Pedro Mendoza", "pedrom98", "pedro.mendoza@example.com", "Podólogo"},
+         {"Lucía Fernández", "luciaf23", "lucia.fernandez@example.com", "Administrador"},
+         {"Jorge Díaz", "jorge123", "jorge.diaz@example.com", "Asistente"},
+         {"Elena Ríos", "elenar56", "elena.rios@example.com", "Podólogo"},
+         {"Ana Pérez", "ana1234", "ana.perez@example.com", "Asistente"},
+         {"Carlos López", "carlospass", "carlos.lopez@example.com", "Podólogo"},
+         {"María Gómez", "mariag123", "maria.gomez@example.com", "Administrador"},
+         {"Luis Torres", "luispass", "luis.torres@example.com", "Asistente"},
+         {"Sofía Castro", "sofiac123", "sofia.castro@example.com", "Asistente"},
+         {"Pedro Mendoza", "pedrom98", "pedro.mendoza@example.com", "Podólogo"},
+         {"Lucía Fernández", "luciaf23", "lucia.fernandez@example.com", "Administrador"},
+         {"Jorge Díaz", "jorge123", "jorge.diaz@example.com", "Asistente"},
+         {"Elena Ríos", "elenar56", "elena.rios@example.com", "Podólogo"},
+         {"Ana Pérez", "ana1234", "ana.perez@example.com", "Asistente"},
+         {"Carlos López", "carlospass", "carlos.lopez@example.com", "Podólogo"},
+         {"María Gómez", "mariag123", "maria.gomez@example.com", "Administrador"},
+         {"Luis Torres", "luispass", "luis.torres@example.com", "Asistente"},
+         {"Sofía Castro", "sofiac123", "sofia.castro@example.com", "Asistente"},
+         {"Pedro Mendoza", "pedrom98", "pedro.mendoza@example.com", "Podólogo"},
+         {"Lucía Fernández", "luciaf23", "lucia.fernandez@example.com", "Administrador"},
+         {"Jorge Díaz", "jorge123", "jorge.diaz@example.com", "Asistente"},
+         {"Elena Ríos", "elenar56", "elena.rios@example.com", "Podólogo"},
+         {"Fernando Ortiz", "fernando123", "fernando.ortiz@example.com", "Asistente"}
+     };
+     
       JTable tablaPacientes = new JTable(datos, columnas);
       JScrollPane scrollPane = new JScrollPane(tablaPacientes);
       // ATRIBUTOS
@@ -205,6 +225,7 @@ public class VistaGestionUsuarios {
       String[] roles = { "asistente", "podologo" };
       @SuppressWarnings("rawtypes")
       JComboBox jcb_roles = new JComboBox<>(roles);
+    
       // ATRIBUTOS
       jp_panel.setLayout(null);
       jp_panel.setBackground(new Color(173, 232, 244));
@@ -267,7 +288,11 @@ public class VistaGestionUsuarios {
       int altura = 60;
       JButton jb_Volver = new JButton("Volver");
       jb_Volver.setBounds(20, 20, 80, 30);
+      jb_Volver.setForeground(Color.WHITE);
+      jb_Volver.setBackground(new Color(0, 150, 199));
       jb_siguiente.setBounds(600, 450, 120, 30);
+      jb_siguiente.setForeground(Color.WHITE);
+      jb_siguiente.setBackground(new Color(0, 150, 199));
 
       panel.setLayout(null);
       panel.setBackground(new Color(173, 232, 244));
@@ -297,12 +322,12 @@ public class VistaGestionUsuarios {
       recordatorios.setBackground(new Color(173, 232, 244));
       panel.add(recordatorios);
 
-      JCheckBox eliminar = new JCheckBox("Cancelar");
+      JCheckBox eliminar = new JCheckBox("Eliminar");
       eliminar.setBounds(400, 130 + altura, 140, 20);
       eliminar.setBackground(new Color(173, 232, 244));
       panel.add(eliminar);
 
-      JCheckBox modificarPacientes = new JCheckBox("modificar");
+      JCheckBox modificarPacientes = new JCheckBox("Modificar");
       modificarPacientes.setBounds(400, 160 + altura, 140, 20);
       modificarPacientes.setBackground(new Color(173, 232, 244));
       panel.add(modificarPacientes);
@@ -312,10 +337,15 @@ public class VistaGestionUsuarios {
       consultarPacientes.setBackground(new Color(173, 232, 244));
       panel.add(consultarPacientes);
 
-      JCheckBox historialClinico = new JCheckBox("recordatorios");
+      JCheckBox historialClinico = new JCheckBox("Historial Clínico");
       historialClinico.setBounds(400, 220 + altura, 140, 20);
       historialClinico.setBackground(new Color(173, 232, 244));
       panel.add(historialClinico);
+
+      JCheckBox Agregar = new JCheckBox("Agregar");
+      Agregar.setBounds(400, 100 + altura, 140, 20);
+      Agregar.setBackground(new Color(173, 232, 244));
+      panel.add(Agregar);
 
       JLabel jl_titulo = new JLabel("Permisos");
       JLabel jl_Citas = new JLabel("Citas");
@@ -326,6 +356,7 @@ public class VistaGestionUsuarios {
       jl_Citas.setFont(new Font("Arial", Font.BOLD, 18));
       jl_pacientes.setBounds(400, 110, 300, 80);
       jl_pacientes.setFont(new Font("Arial", Font.BOLD, 18));
+
 
       panel.add(jl_titulo);
       panel.add(jl_Citas);
@@ -347,7 +378,14 @@ public class VistaGestionUsuarios {
                         "<br>" +
                         " <span style='color:red;'>No se realizo correctamente la Modificacion</span></html>"));
          }
-
+      });
+      jb_Volver.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            WindowMain.quitarPanel();
+            WindowMain.jf_ventanaPrincipal.add(vistAgregarUsuarioModificar());
+         }
+         
       });
 
       return panel;
@@ -471,9 +509,7 @@ public class VistaGestionUsuarios {
                               "Teléfono: 2348742\n" + //
                               "Correo: ajdfada\n¿Ees correcto?");
             WindowMain.quitarPanel();
-            WindowMain.jf_ventanaPrincipal.add(vistAgregarUsuarioAgregar("<html>Se agrego correctamente <br> " +
-            "<br>" +
-            " <span style='color:red;'>No se agrego correctamente</span></html>"));
+            WindowMain.jf_ventanaPrincipal.add(vistaPermisosAgregar());
          }
 
       });
@@ -485,6 +521,7 @@ public class VistaGestionUsuarios {
 
    public static JPanel vistaPermisosAgregar() {
       JButton jb_siguiente = new JButton("Siguiente");
+
       JPanel panel;
 
       panel = new JPanel();
@@ -492,6 +529,10 @@ public class VistaGestionUsuarios {
       JButton jb_Volver = new JButton("Volver");
       jb_Volver.setBounds(20, 20, 80, 30);
       jb_siguiente.setBounds(600, 450, 120, 30);
+      jb_Volver.setForeground(Color.WHITE);
+      jb_Volver.setBackground(new Color(0, 150, 199));
+      jb_siguiente.setForeground(Color.WHITE);
+      jb_siguiente.setBackground(new Color(0, 150, 199));
 
       panel.setLayout(null);
       panel.setBackground(new Color(173, 232, 244));
@@ -521,12 +562,17 @@ public class VistaGestionUsuarios {
       recordatorios.setBackground(new Color(173, 232, 244));
       panel.add(recordatorios);
 
-      JCheckBox eliminar = new JCheckBox("Cancelar");
+      JCheckBox Agregar = new JCheckBox("Agregar");
+      Agregar.setBounds(400, 100 + altura, 140, 20);
+      Agregar.setBackground(new Color(173, 232, 244));
+      panel.add(Agregar);
+      
+      JCheckBox eliminar = new JCheckBox("Eliminar");
       eliminar.setBounds(400, 130 + altura, 140, 20);
       eliminar.setBackground(new Color(173, 232, 244));
       panel.add(eliminar);
 
-      JCheckBox modificarPacientes = new JCheckBox("modificar");
+      JCheckBox modificarPacientes = new JCheckBox("Modificar");
       modificarPacientes.setBounds(400, 160 + altura, 140, 20);
       modificarPacientes.setBackground(new Color(173, 232, 244));
       panel.add(modificarPacientes);
@@ -536,7 +582,7 @@ public class VistaGestionUsuarios {
       consultarPacientes.setBackground(new Color(173, 232, 244));
       panel.add(consultarPacientes);
 
-      JCheckBox historialClinico = new JCheckBox("recordatorios");
+      JCheckBox historialClinico = new JCheckBox("Historial Clínico");
       historialClinico.setBounds(400, 220 + altura, 140, 20);
       historialClinico.setBackground(new Color(173, 232, 244));
       panel.add(historialClinico);
@@ -567,20 +613,24 @@ public class VistaGestionUsuarios {
                   "Correo: ajdfada");
             WindowMain.quitarPanel();
             WindowMain.jf_ventanaPrincipal
-                  .add(vistaBuscarModificar("<html>Se realizo correctamente <br>la Modificacion " +
+                  .add(vistAgregarUsuarioAgregar("<html>Se agrego correctamente <br> " +
                         "<br>" +
-                        " <span style='color:red;'>No se realizo correctamente la Modificacion</span></html>"));
+                        " <span style='color:red;'>No se agrego correctamente</span></html>"));
          }
 
+      });
+
+      jb_Volver.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            WindowMain.quitarPanel();
+            WindowMain.jf_ventanaPrincipal.add(vistAgregarUsuarioAgregar(""));
+         }
+         
       });
 
       return panel;
 
    }
 
-   // AGENDAR
-   // CANCELAR
-   // MODIFICAR
-   // CONSULTAR
-   // RECORDATORIOS
 }
