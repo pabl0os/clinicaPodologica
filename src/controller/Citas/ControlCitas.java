@@ -1,5 +1,5 @@
 package controller.Citas;
 
-public class ConsultasCitas {
+public class ControlCitas {
 
 }
