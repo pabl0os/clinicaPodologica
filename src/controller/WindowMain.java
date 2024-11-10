@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import view.Citas.VistaCitas;
 import view.pacientes.vistaPacientes;
 import view.usuarios.VistaEntrar;
 import view.usuarios.VistaGestionUsuarios;
@@ -138,8 +139,6 @@ public class WindowMain {
     }
 
     private void escuchas() {
-<<<<<<< HEAD
-=======
 
         // PACIENTES---------------------------------------------------------------------------------------
         itemEliminarPacientes.addActionListener(new ActionListener() {
@@ -215,7 +214,53 @@ public class WindowMain {
             
         });
         // CITAS---------------------------------------------------------------------------------------
+        itemAgendar3Citas.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quitarPanel();
+                jf_ventanaPrincipal.add(VistaCitas.getVistaBuscarAgendar());
+            }
+            
+        });
+
+        itemCancelar3Citas.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quitarPanel();
+                jf_ventanaPrincipal.add(VistaCitas.getVistaBuscarCancelar());
+            }
+            
+        });
+        
+        itemModificar3Citas.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WindowMain.quitarPanel();
+                WindowMain.jf_ventanaPrincipal.add(VistaCitas.getVistaBuscarModificar());
+            }
+            
+        });
+        
+        itemConsultar3Citas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WindowMain.quitarPanel();
+                WindowMain.jf_ventanaPrincipal.add(VistaCitas.getVistaBuscarConsultas());
+            } 
+        });
+
+        itemRecordatorios3Citas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WindowMain.quitarPanel();
+                WindowMain.jf_ventanaPrincipal.add(VistaCitas.VistaRecordatorios());
+            }
+            
+        });
+       
         // OTROS---------------------------------------------------------------------------------------
         ItemSalirOtros.addActionListener(new ActionListener() {
             @Override
@@ -226,7 +271,6 @@ public class WindowMain {
             
         });
        
->>>>>>> 4c59ba95be566b8ebd949d99480ef558b52c8d3d
     }
 
     private void mostrar() {
