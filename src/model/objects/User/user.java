@@ -18,14 +18,20 @@ public class user {
     private boolean ModificarPaciente;
     private boolean ConsultarPaciente;
     private boolean HistorialClinico;
+    private boolean imprimirJustificante;
+    private boolean imprimirReceta;
 
-    public user(int iDuser, String name, String pass, String email, String rol) {
-        IDuser = iDuser;
+    public user( String name, String pass, String email, String rol) {
         this.name = name;
         this.pass = pass;
         this.email = email;
         this.rol = rol;
     }
+
+    
+    public user() {
+    }
+
 
     public int getIDuser() {
         return IDuser;
@@ -146,6 +152,40 @@ public class user {
     public void setHistorialClinico(boolean historialClinico) {
         HistorialClinico = historialClinico;
     }
+
+
+    public boolean isImprimirJustificante() {
+        return imprimirJustificante;
+    }
+
+
+    public void setImprimirJustificante(boolean imprimirJustificante) {
+        this.imprimirJustificante = imprimirJustificante;
+    }
+
+
+    public boolean isImprimirReceta() {
+        return imprimirReceta;
+    }
+
+
+    public void setImprimirReceta(boolean imprimirReceta) {
+        this.imprimirReceta = imprimirReceta;
+    }
+
+
+    @Override
+    public String toString() {
+        return "user [IDuser=" + IDuser + ", name=" + name + ", pass=" + pass + ", email=" + email + ", rol=" + rol
+                + ", AgendarCita=" + AgendarCita + ", CancelarCita=" + CancelarCita + ", ModificarCita=" + ModificarCita
+                + ", ConsultarCita=" + ConsultarCita + ", RecordatoriosCita=" + RecordatoriosCita + ", AgregarPaciente="
+                + AgregarPaciente + ", EliminarPaciente=" + EliminarPaciente + ", ModificarPaciente="
+                + ModificarPaciente + ", ConsultarPaciente=" + ConsultarPaciente + ", HistorialClinico="
+                + HistorialClinico + ", imprimirJustificante=" + imprimirJustificante + ", imprimirReceta="
+                + imprimirReceta + "]";
+    }
+
+    
 
    
 

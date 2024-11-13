@@ -1,18 +1,28 @@
 package model.objects.Paciente;
 
+
 public class paciente {
     private int IDPaciente;
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String Enlace;
-    public paciente(int iDPaciente, String name, int phoneNumber, String email, String enlace) {
+ 
+    public paciente(int iDPaciente, String name, String phoneNumber, String email, String enlace) {
         IDPaciente = iDPaciente;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         Enlace = enlace;
     }
+
+    
+
+    public paciente() {
+    }
+
+
+
     public int getIDPaciente() {
         return IDPaciente;
     }
@@ -25,10 +35,10 @@ public class paciente {
     public void setName(String name) {
         this.name = name;
     }
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getEmail() {
@@ -43,6 +53,14 @@ public class paciente {
     public void setEnlace(String enlace) {
         Enlace = enlace;
     }
+
+    @Override
+    public String toString() {
+        return "paciente [IDPaciente=" + IDPaciente + ", name=" + name + ", phoneNumber=" + phoneNumber + ", email="
+                + email + ", Enlace=" + Enlace + "]";
+    }
+
+    
 
     
 

@@ -3,8 +3,12 @@
         "src"
     ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Users\\pabli\\Downloads\\mysql-connector-j-9.1.0 (1).jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "librerias\\mysql-connector-j-9.1.0 (1).jar"
+        ],
+        "exclude": [
+            "lib/mysql-connector-j-9.1.0.jar"
+        ]
+    }
 }
