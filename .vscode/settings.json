@@ -3,6 +3,7 @@
         "src"
     ],
     "java.project.outputPath": "bin",
+<<<<<<< HEAD
     "java.project.referencedLibraries": {
         "include": [
             "librerias\\mysql-connector-j-9.1.0 (1).jar"
@@ -11,4 +12,12 @@
             "lib/mysql-connector-j-9.1.0.jar"
         ]
     }
+=======
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\pabli\\Downloads\\mysql-connector-j-9.1.0 (1).jar",
+        "c:\\Users\\Cuell\\Downloads\\javax.mail.jar",
+        "c:\\Users\\Cuell\\Downloads\\activation-1.1.1.jar"
+    ]
+>>>>>>> 89c8b035e2cc4f7ad48266fe622fc74c816dccdf
 }

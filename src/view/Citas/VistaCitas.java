@@ -1,59 +1,51 @@
 package view.Citas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpinnerListModel;
-import javax.swing.SpinnerModel;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controller.WindowMain;
-import database.coneccionDataBase;
+import controller.Citas.ControlCitas;
+
+
 
 public class VistaCitas {
-
+    private static ControlCitas control = new ControlCitas();
+    
     // -------------Inicio----------------------------//
 
     // AGENDAR
     public static JPanel getVistaBuscarAgendar() {
         // VARIABLES
+        
         JButton jb_botonPanel = new JButton("Agendar");
         JButton jb_atras = new JButton("Volver");
-        String[] columnas = { "Nombre", "Telefono", "Correo" };
+        String[] columnas = { "Nombre", "Telefono", "Correo","Cita"};
         String[] opcionesComboBox = columnas;
         JPanel jp_panel = new JPanel();
         JTextField jtf_busqueda = new JTextField();
         JButton jb_Buscar = new JButton("Buscar");
         JButton jb_Aqui = new JButton("Aquí");
         JLabel jl_Aqui = new JLabel("<html>Si no encuentras al <br> paciente, registralo!</html>");
-
-        Object[][] datos;
-
-        int renglones = 30;
-        int colum = columnas.length;
-        datos = new Object[renglones][colum];
-        for (int i = 0; i < renglones; i++) {
-            for (int j = 0; j < colum; j++) {
-                datos[i][j] = "texto de prueba";
-            }
-        }
-
+        
+        Object[][] datos = control.ConsultaGeneralCita();
+        
         JTable tablaPacientes = new JTable(datos, columnas);
         JScrollPane scrollPane = new JScrollPane(tablaPacientes);
 
@@ -116,6 +108,14 @@ public class VistaCitas {
 
         });
 
+        jb_Buscar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               Object datos = control.ConsultaIndividuallCita(null, null);
+            }
+            
+        });
         // MOSTRAR
 
         return jp_panel;
@@ -825,10 +825,16 @@ public class VistaCitas {
     public static JPanel VistaRecordatorios() {
         // Variables
         JPanel jp_vistaRecordatorios = new JPanel(null);
-        String[] columNames = null;
-        Object[][] datos = null;
-        JCheckBox[][] jcbox_confirmaciones = null;
-        JTable jt_tablaRecordatorios = new JTable();
+        String[] columNames ={"Nombre","Telefono","Horario","Llamada realizada","Cita Confirmada"};
+        Object[][] datos = control.Recordatorios();
+        DefaultTableModel model = new DefaultTableModel(datos,columNames) {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                // Especificar que las columnas de "llamada realizada" y "cita confirmada" son booleanas
+                return (column == 3 || column == 4) ? Boolean.class : String.class;
+            }
+        };
+        JTable jt_tablaRecordatorios = new JTable(model);
         JScrollPane js_scrollrecodatorios = new JScrollPane(jt_tablaRecordatorios);
         JLabel jl_citasMañana = new JLabel("Citas Para Mañana");
         JLabel jl_hecho = new JLabel("Hecho");
@@ -856,7 +862,8 @@ public class VistaCitas {
 
         js_scrollrecodatorios.setBounds(30, 110, 700, 400);
        
-        // Escuchas
+        // Escuchas e Instancias
+               
         return jp_vistaRecordatorios;
     }
 
