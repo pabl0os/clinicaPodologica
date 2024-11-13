@@ -1,12 +1,13 @@
-package model.dataBase.Citas;
+package correo_Contraseña.Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
-public class ConsultasCitas {
+public class ModelRecoverPass {
     // Datos de conexión
     final private String url = "jdbc:mysql://root:zbHWBzTqpdWaLFOhxgYfMJNTFanUeLrY@autorack.proxy.rlwy.net:27850/railway";
     final private String usuario = "root";
@@ -39,9 +40,15 @@ public class ConsultasCitas {
         }
     }
     
-    public ResultSet gResultSet(String query) {
+    public ResultSet gResultSet(String correo) {
+        Random aleatorio = new Random();
+        long random = aleatorio.nextInt(100000, 999999);
         try {
             statment = conexion.createStatement();
+            String query = "Update USUARIO\n"+
+                            "Set Contraseña = "+random+"\n"+
+                            "where CorreoElectronico = "+correo;
+            // String query = "Select Contraseña from USUARIO where CorreoElectronico = "+correo;
             resultado = statment.executeQuery(query);
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
@@ -53,5 +60,7 @@ public class ConsultasCitas {
             return null;
         }
     }
+
+
 
 }
